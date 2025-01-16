@@ -33,12 +33,12 @@ class Veicolo:
         if targa[0] not in alfabeto or targa[1] not in alfabeto or targa[2] not in numeri or targa[3] not in numeri or targa[4] not in numeri or targa[5] not in alfabeto or targa[6] not in alfabeto:
             raise ValueError("Targa non valida")
         self.__targa = targa
-
+#-------------------------------------------------------------------------
     def __str__(self):
         return "Veicolo:" + str(self.__dict__)
     def __repr__(self):
         return "Veicolo:" + str(self.__dict__)
-
+#-------------------------------------------------------------------------
     @property
     def marca(self):
         return self.__marca
@@ -48,11 +48,11 @@ class Veicolo:
         if value not in marche:
             raise ValueError("La marca non è nella lista marche.")
         self.__marca = value
-
+#-------------------------------------------------------------------------
     @property
     def modello(self):
         return self.__modello
-
+#-------------------------------------------------------------------------
     @property
     def colore(self):
         return self.__colore
@@ -62,7 +62,7 @@ class Veicolo:
         if value not in colori:
             raise ValueError("Colore non valido")
         self.__colore = value
-
+#-------------------------------------------------------------------------
     @property
     def cilindrata(self):
         return self.__cilindrata
@@ -72,7 +72,7 @@ class Veicolo:
         if value % 100 != 0:
             raise ValueError("La cilindrata non è multiplo di 100.")
         self.__cilindrata = value
-
+#-------------------------------------------------------------------------
     @property
     def alimentazione(self):
         return self.__alimentazione
@@ -82,7 +82,7 @@ class Veicolo:
         if value not in alimentazioni:
             raise ValueError("Errore l'alimentazione non è accettabile.")
         self.__alimentazione = value
-
+#-------------------------------------------------------------------------
     @property
     def targa(self):
         return self.__targa
@@ -94,7 +94,7 @@ class Veicolo:
             raise ValueError("Targa non valida")
         self.__targa = value
 
-
+#-------------------------------------------------------------------------
 #ordino i veicoli controllandro prima la marca , se uguale confronto il modello e se uguale, confronto la cilindrata
     def __lt__(self ,other):
         if self.__marca < other.__marca:
