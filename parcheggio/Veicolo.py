@@ -93,26 +93,19 @@ class Veicolo:
         if targa[0] not in alfabeto or targa[1] not in alfabeto or targa[2] not in numeri or targa[3] not in numeri or targa[4] not in numeri or targa[5] not in alfabeto or targa[6] not in alfabeto:
             raise ValueError("Targa non valida")
         self.__targa = value
-        
-    def __le__(self , altroVeicolo):
-        if self.__marca > altroVeicolo.marca:
-            return False
-        elif self.__modello > altroVeicolo.modello:
-            return False
-        elif self.__cilindrata > altroVeicolo.cilindrata:
-            return False
-        else:
-            return True
-    
-    def __lt__(self , altroVeicolo):
-        if self.__marca < altroVeicolo.marca:
+
+
+#ordino i veicoli controllandro prima la marca , se uguale confronto il modello e se uguale, confronto la cilindrata
+    def __lt__(self ,other):
+        if self.__marca < other.__marca:
             return True 
-        elif self.__modello < altroVeicolo.modello:
-            return True
-        elif self.__cilindrata < altroVeicolo.cilindrata:
-            return True
-        else:
-            return False
+        elif self.__marca == other.__marca:
+            if self.__modello < other.__modello:
+                return True
+            elif self.__modello == other.__modello:
+                if self.__cilindrata < other.__cilindrata:
+                    return True
+        return False
     
 if __name__ == "__main__":
     Veicolo1 = Veicolo("Fiat", "Punto", "Rosso", 1000, "Benzina", "AD154FB")
@@ -123,7 +116,7 @@ if __name__ == "__main__":
     print(Veicolo2)
     print(Veicolo3)
     
-    print(Veicolo1 <= Veicolo2)
+    print(Veicolo1 < Veicolo2)
     
     listaVeicoli = [Veicolo1 , Veicolo2 , Veicolo3]
     listaVeicoli.sort()
