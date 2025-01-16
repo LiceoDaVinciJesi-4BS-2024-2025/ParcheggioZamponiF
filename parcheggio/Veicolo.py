@@ -28,7 +28,10 @@ class Veicolo:
             raise ValueError("Errore l'alimentazione non è accettabile.")
         self.__alimentazione = alimentazione
 
-        
+        if len(targa) != 7:
+            raise ValueError
+        if targa[0] not in alfabeto or targa[1] not in alfabeto or targa[2] not in numeri or targa[3] not in numeri or targa[4] not in numeri or targa[5] not in alfabeto or targa[6] not in alfabeto:
+            raise ValueError("Targa non valida")
         self.__targa = targa
 
     def __str__(self):
@@ -83,7 +86,13 @@ class Veicolo:
     @property
     def targa(self):
         return self.__targa
-
+    @targa.setter
+    def targa(self, value):
+        if len(targa) != 7:
+            raise ValueError
+        if targa[0] not in alfabeto or targa[1] not in alfabeto or targa[2] not in numeri or targa[3] not in numeri or targa[4] not in numeri or targa[5] not in alfabeto or targa[6] not in alfabeto:
+            raise ValueError("Targa non valida")
+        self.__targa = value
     
 
 if __name__ == "__main__":
