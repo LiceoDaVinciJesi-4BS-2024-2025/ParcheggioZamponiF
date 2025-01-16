@@ -57,8 +57,7 @@ class Auto(Veicolo):
         if capacità != 1000:
             raise ValueError("ERRORE")
         self.__capacità = value
-        
-    
+            
 #-------------------------------------------------------------------------    
     @property
     def chili(self):
