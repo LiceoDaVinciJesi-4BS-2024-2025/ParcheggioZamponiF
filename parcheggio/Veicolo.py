@@ -94,6 +94,11 @@ class Veicolo:
             raise ValueError("Targa non valida")
         self.__targa = value
     
+        
+        
+        
+    
+    
 
 if __name__ == "__main__":
     Veicolo1 = Veicolo("Fiat", "Punto", "Rosso", 1000, "Benzina", "AD154FB")
