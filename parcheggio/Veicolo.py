@@ -96,5 +96,5 @@ class Veicolo:
     
 
 if __name__ == "__main__":
-    Veicolo1 = Veicolo("Fiat", "Punto", "Rosso", 1000, "Benzina", "AD124FB")
+    Veicolo1 = Veicolo("Fiat", "Punto", "Rosso", 1000, "Benzina", "AD154FB")
     print(Veicolo1)
