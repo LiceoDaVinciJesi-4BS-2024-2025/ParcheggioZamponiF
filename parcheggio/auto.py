@@ -1,7 +1,7 @@
 #Filippo Zamponi
 #4BS
 #classe Auto
-from veicolo import Veicolo
+from Veicolo import *
 
 class Auto(Veicolo):
     def __init__(self, marca, modello, colore, cilindrata, alimentazione, targa,passeggeriMax = int,passeggeri = int,capacità = int,chili = int):
