@@ -53,7 +53,9 @@ class PostoMezzo:
         if targa not in self.__postioccupati:
             raise ValueError("Veicolo non presente")
 
+#ordino le targhe con pop
         tipologiamezzo = self.__postioccupati.pop(targa)
+        
         if tipologiamezzo == "autobus":
             self.__parcheggiautobus += 1
         elif tipologiamezzo == "auto":
@@ -66,24 +68,24 @@ if __name__ == "__main__":
     
     print("--------------------------------------------------")
     
-    # Occupa un posto per auto
+    # Occupo un posto per auto
     p.occupaPosto("auto", "AB123CD", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     print(p)
     
     print("--------------------------------------------------")
     
-    # Occupa un posto per autobus
+    # Occupo un posto per autobus
     p.occupaPosto("autobus", "EF456GH", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     print(p)
     
     print("--------------------------------------------------")
 
-    # Libera un posto per auto
+    # Libero un posto per auto
     p.liberaPosto("AB123CD")
     print(p)
     
     print("--------------------------------------------------")
 
-    # Libera un posto per autobus
+    # Libero un posto per autobus
     p.liberaPosto("EF456GH")
     print(p)
