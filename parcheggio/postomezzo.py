@@ -39,8 +39,8 @@ class PostoMezzo:
             raise ValueError("Veicolo già parcheggiato.")
 
         # Calcolo l'orario di fine (aggiungo 1 ora all'orario di inizio)
-        orario_inizio = datetime.strptime(inizio, "%Y-%m-%d %H:%M:%S")
-        orario_fine = orario_inizio + timedelta(hours=1)  # Aggiungo 1 ora
+        orario_inizio = inizio
+        orario_fine = inizio + timedelta(hours=1)  # Aggiungo 1 ora
 
         if tipologiamezzo == "autobus":
             if self.__parcheggiautobus > 0:
@@ -77,13 +77,13 @@ if __name__ == "__main__":
     print("--------------------------------------------------")
     
     # Occupo un posto per auto
-    p.occupaPosto("auto", "AB123CD", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    p.occupaPosto("auto", "AB123CD", datetime.now())
     print(p)
     
     print("--------------------------------------------------")
     
     # Occupo un posto per autobus
-    p.occupaPosto("autobus", "EF456GH", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    p.occupaPosto("autobus", "EF456GH", datetime.now())
     print(p)
     
     print("--------------------------------------------------")
