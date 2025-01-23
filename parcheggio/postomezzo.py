@@ -53,8 +53,8 @@ class PostoMezzo:
         if targa not in self.__postioccupati:
             raise ValueError("Veicolo non presente")
 
-#ordino le targhe con pop
-        tipologiamezzo = self.__postioccupati.pop(targa)
+#ordino le targhe con pop , estrapolando l elemento associato a targa al posto 0
+        tipologiamezzo = self.__postioccupati.pop(targa)[0]
         
         if tipologiamezzo == "autobus":
             self.__parcheggiautobus += 1
@@ -65,6 +65,7 @@ class PostoMezzo:
 if __name__ == "__main__":
     p = PostoMezzo()
     print(p)
+    
     
     print("--------------------------------------------------")
     
