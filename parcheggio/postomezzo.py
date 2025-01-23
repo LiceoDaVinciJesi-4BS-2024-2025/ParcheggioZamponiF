@@ -2,21 +2,24 @@
 #4BS
 #classe PostoMezzo
 
-from datetime import datetime
+
+from datetime import datetime, timedelta
 
 mezzi = ["autobus", "auto"]
 
 class PostoMezzo:
     def __init__(self):
-        self.__parcheggiautobus = 20
-        self.__parcheggiauto = 100
-        self.__postioccupati = {}  # Dizionario {targa: (tipologia, data/ora)}
+        self.__parcheggiautobus = 1
+        self.__parcheggiauto = 1
+        self.__postioccupati = {}  # Dizionario {targa: (tipologia, orario_inizio, orario_fine)}
 
     # -------------------------------------------------------------------------
     def __str__(self):
         return "PostoMezzo:" + str(self.__dict__)
+    
     def __repr__(self):
         return "PostoMezzo:" + str(self.__dict__)
+    
     # -------------------------------------------------------------------------
     @property
     def parcheggiautobus(self):
@@ -27,7 +30,7 @@ class PostoMezzo:
         return self.__parcheggiauto
 
     # -------------------------------------------------------------------------
-    def occupaPosto(self, tipologiamezzo, targa, data_ora_termine):
+    def occupaPosto(self, tipologiamezzo, targa, inizio):
         tipologiamezzo = tipologiamezzo.lower()
         
         if tipologiamezzo not in mezzi:
@@ -35,20 +38,25 @@ class PostoMezzo:
         if targa in self.__postioccupati:
             raise ValueError("Veicolo già parcheggiato.")
 
+        # Calcolo l'orario di fine (aggiungo 1 ora all'orario di inizio)
+        orario_inizio = datetime.strptime(inizio, "%Y-%m-%d %H:%M:%S")
+        orario_fine = orario_inizio + timedelta(hours=1)  # Aggiungo 1 ora
+
         if tipologiamezzo == "autobus":
             if self.__parcheggiautobus > 0:
                 self.__parcheggiautobus -= 1
-                self.__postioccupati[targa] = (tipologiamezzo, data_ora_termine)
+                self.__postioccupati[targa] = (tipologiamezzo, orario_inizio, orario_fine)
             else:
                 raise ValueError("Nessun posto disponibile per autobus")
         
         elif tipologiamezzo == "auto":
             if self.__parcheggiauto > 0:
                 self.__parcheggiauto -= 1
-                self.__postioccupati[targa] = (tipologiamezzo, data_ora_termine)
+                self.__postioccupati[targa] = (tipologiamezzo, orario_inizio, orario_fine)
             else:
                 raise ValueError("Nessun posto disponibile per auto")
-# -------------------------------------------------------------------------
+
+    # -------------------------------------------------------------------------
     def liberaPosto(self, targa):
         if targa not in self.__postioccupati:
             raise ValueError("Veicolo non presente")
@@ -65,7 +73,6 @@ class PostoMezzo:
 if __name__ == "__main__":
     p = PostoMezzo()
     print(p)
-    
     
     print("--------------------------------------------------")
     
