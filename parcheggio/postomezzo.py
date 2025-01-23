@@ -30,7 +30,7 @@ class PostoMezzo:
         return self.__parcheggiauto
 
     # -------------------------------------------------------------------------
-    def occupaPosto(self, tipologiamezzo, targa, inizio):
+    def occupaPosto(self, tipologiamezzo, targa, inizio , ore):
         tipologiamezzo = tipologiamezzo.lower()
         
         if tipologiamezzo not in mezzi:
@@ -40,7 +40,7 @@ class PostoMezzo:
 
         # Calcolo l'orario di fine (aggiungo 1 ora all'orario di inizio)
         orario_inizio = inizio
-        orario_fine = inizio + timedelta(hours=1)  # Aggiungo 1 ora
+        orario_fine = inizio + timedelta(hours=ore)  # Aggiungo 1 ora
 
         if tipologiamezzo == "autobus":
             if self.__parcheggiautobus > 0:
@@ -76,14 +76,14 @@ if __name__ == "__main__":
     
     print("--------------------------------------------------")
     
-    # Occupo un posto per auto
-    p.occupaPosto("auto", "AB123CD", datetime.now())
+    # Occupo un posto per auto e ci sto un ora
+    p.occupaPosto("auto", "AB123CD", datetime.now(),1)
     print(p)
     
     print("--------------------------------------------------")
     
-    # Occupo un posto per autobus
-    p.occupaPosto("autobus", "EF456GH", datetime.now())
+    # Occupo un posto per autobus e ci sto 3 ore
+    p.occupaPosto("autobus", "EF456GH", datetime.now(),3)
     print(p)
     
     print("--------------------------------------------------")
