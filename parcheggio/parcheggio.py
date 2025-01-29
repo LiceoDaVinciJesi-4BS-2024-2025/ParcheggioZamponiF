@@ -13,12 +13,12 @@ class Parcheggio:
         self.__postioccupati = {}  # Dizionario {targa: (tipologia, orario_inizio, orario_fine)}
 
         self.caricaDati()
-
+#-------------------------------------------------------------------------
     def __str__(self):
         return "Parcheggio:" + str(self.__dict__)
     def __repr__(self):
         return "Parcheggio:" + str(self.__dict__)
-
+#-------------------------------------------------------------------------
     @property
     def parcheggiautobus(self):
         return self.__parcheggiautobus
@@ -27,7 +27,7 @@ class Parcheggio:
     def parcheggiauto(self):
         return self.__parcheggiauto
 
-    
+#-------------------------------------------------------------------------    
     def occupaPosto(self, tipologiamezzo, targa, inizio, ore):
         tipologiamezzo = tipologiamezzo.lower()
 
@@ -52,7 +52,7 @@ class Parcheggio:
                 self.__postioccupati[targa] = (tipologiamezzo, orario_inizio, orario_fine)
             else:
                 raise ValueError("Nessun posto disponibile per auto")
-
+#-------------------------------------------------------------------------
     def liberaPosto(self, targa):
         if targa not in self.__postioccupati:
             raise ValueError("Veicolo non presente")
@@ -63,7 +63,7 @@ class Parcheggio:
             self.__parcheggiautobus += 1
         elif tipologiamezzo == "auto":
             self.__parcheggiauto += 1
-
+#-------------------------------------------------------------------------
     def conto(self, tipologiamezzo, ore):
         conto = 0
         if tipologiamezzo.lower() == "auto":
@@ -75,7 +75,7 @@ class Parcheggio:
             conto += pagamento
 
         return conto
-
+#-------------------------------------------------------------------------
     def salvadati(self):
         f = open("park.data", "w")
         
@@ -84,7 +84,7 @@ class Parcheggio:
         for targa, (tipologia, orario_inizio, orario_fine) in self.__postioccupati.items():
             f.write(f"{targa}|{tipologia}|{orario_inizio.strftime('%Y-%m-%d %H:%M:%S')}|{orario_fine.strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.close()
-
+#-------------------------------------------------------------------------
     def caricaDati(self):
         f = open("park.data", "r")
         lines = f.readlines()
