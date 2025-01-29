@@ -1,6 +1,7 @@
 #Filippo Zamponi
 #4BS
 #parcheggio
+
 from datetime import datetime, timedelta
 
 mezzi = ["auto", "autobus"]
@@ -16,9 +17,11 @@ class Parcheggio:
 #-------------------------------------------------------------------------
     def __str__(self):
         return "Parcheggio:" + str(self.__dict__)
+
     def __repr__(self):
         return "Parcheggio:" + str(self.__dict__)
-#-------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------    
     @property
     def parcheggiautobus(self):
         return self.__parcheggiautobus
@@ -52,7 +55,8 @@ class Parcheggio:
                 self.__postioccupati[targa] = (tipologiamezzo, orario_inizio, orario_fine)
             else:
                 raise ValueError("Nessun posto disponibile per auto")
-#-------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------    
     def liberaPosto(self, targa):
         if targa not in self.__postioccupati:
             raise ValueError("Veicolo non presente")
@@ -63,7 +67,8 @@ class Parcheggio:
             self.__parcheggiautobus += 1
         elif tipologiamezzo == "auto":
             self.__parcheggiauto += 1
-#-------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------    
     def conto(self, tipologiamezzo, ore):
         conto = 0
         if tipologiamezzo.lower() == "auto":
@@ -75,34 +80,38 @@ class Parcheggio:
             conto += pagamento
 
         return conto
-#-------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------    
     def salvadati(self):
+        # Apre il file in modalità scrittura, creando il file se non esiste
         f = open("park.data", "w")
-        
+
         f.write(f"{self.__parcheggiauto},{self.__parcheggiautobus}\n")
 
-        for targa, (tipologia, orario_inizio, orario_fine) in self.__postioccupati.items():
+        for targa,(tipologia, orario_inizio, orario_fine) in self.__postioccupati.items():
             f.write(f"{targa}|{tipologia}|{orario_inizio.strftime('%Y-%m-%d %H:%M:%S')}|{orario_fine.strftime('%Y-%m-%d %H:%M:%S')}\n")
-        f.close()
-#-------------------------------------------------------------------------
-    def caricaDati(self):
-        f = open("park.data", "r")
-        lines = f.readlines()
+        
         f.close()
 
-        if len(lines) == 0:
+#-------------------------------------------------------------------------    
+    def caricaDati(self):
+        f = open("park.data", "r")
+        linee = f.readlines()
+        f.close()
+
+        if len(linee) == 0:
             return  # Se il file è vuoto, non carica nulla
 
         # Carica i posti liberi
-        dati_posti = lines[0].strip().split(",")
-        self.__parcheggiauto = int(dati_posti[0])
-        self.__parcheggiautobus = int(dati_posti[1])
+        posti = linee[0].strip().split(",")
+        self.__parcheggiauto = int(posti[0])
+        self.__parcheggiautobus = int(posti[1])
 
         # Carica i veicoli parcheggiati
-        for line in lines[1:]:
-            parts = line.strip().split("|")
-            if len(parts) == 4:
-                targa, tipologia, orario_inizio, orario_fine = parts
+        for linea in linee[1:]:
+            x = linea.strip().split("|")
+            if len(x) == 4:
+                targa, tipologia, orario_inizio, orario_fine = x
                 self.__postioccupati[targa] = (tipologia,datetime.strptime(orario_inizio, "%Y-%m-%d %H:%M:%S"),datetime.strptime(orario_fine, "%Y-%m-%d %H:%M:%S"))
 
 # -------------------------------------------------------------------------
@@ -113,7 +122,7 @@ if __name__ == "__main__":
     print("--------------------------------------------------")
 
     # Occupo un posto per auto e ci sto un ora
-    p.occupaPosto("auto", "AB123CD", datetime.now(), 1)
+    p.occupaPosto("auto", "AD123CD", datetime.now(), 1)
     print(p)
 
     print("--------------------------------------------------")
@@ -135,7 +144,6 @@ if __name__ == "__main__":
     print("L'autobus deve pagare :", costo)
 
     print("--------------------------------------------------")
-
 
     # Libero un posto per autobus
     p.liberaPosto("EF456GH")
