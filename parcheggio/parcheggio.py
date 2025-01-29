@@ -79,7 +79,17 @@ class Parcheggio:
             pagamento = costi[1] * ore
             conto += pagamento
         
-        return conto 
+        return conto
+    
+    def salvadati(self):
+        f = open("park.data", "w")
+        f.write(f"{self.__parcheggiauto},{self.__parcheggiautobus}\n")
+        
+        for x in self.__postioccupati.items():
+            f.write(f"{targa}|{tipologia}|{orario_inizio.strftime('%Y-%m-%d %H:%M:%S')}|{orario_fine.strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.close()
+        
+        
                 
             
 
@@ -124,3 +134,5 @@ if __name__ == "__main__":
     p.liberaPosto("EF456GH")
     print(p)
     
+    
+    p.salvadati()
