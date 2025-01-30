@@ -16,10 +16,10 @@ class Parcheggio:
         self.caricaDati()
 #-------------------------------------------------------------------------
     def __str__(self):
-        return "Parcheggio:" + str(self.__dict__)
+        return "ZAMPONSPARK:" + str(self.__dict__)
 
     def __repr__(self):
-        return "Parcheggio:" + str(self.__dict__)
+        return "ZAMPONSPARK:" + str(self.__dict__)
 
 #-------------------------------------------------------------------------    
     @property
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     print("--------------------------------------------------")
 
     # Occupo un posto per auto e ci sto un ora
-    p.occupaPosto("auto", "AG123CD", datetime.now(), 1)
+    p.occupaPosto("auto", "AZ123CD", datetime.now(), 1)
     print(p)
 
     print("--------------------------------------------------")
