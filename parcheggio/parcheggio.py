@@ -108,7 +108,7 @@ class Parcheggio:
         self.__parcheggiautobus = int(posti[1])
 
         # Carica i veicoli parcheggiati
-        for linea in linee[1:]:
+        for linea in linee:
             x = linea.strip().split("|")
             if len(x) == 4:
                 targa, tipologia, orario_inizio, orario_fine = x
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     print("--------------------------------------------------")
 
     # Occupo un posto per auto e ci sto un ora
-    p.occupaPosto("auto", "AH123CD", datetime.now(), 1)
+    p.occupaPosto("auto", "AG123CD", datetime.now(), 1)
     print(p)
 
     print("--------------------------------------------------")
