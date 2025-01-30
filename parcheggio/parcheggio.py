@@ -83,7 +83,7 @@ class Parcheggio:
 
 #-------------------------------------------------------------------------    
     def salvadati(self):
-        # Apre il file in modalità scrittura, creando il file se non esiste
+        # crea il file e lo apre in modalità scrittura
         f = open("park.data", "w")
 
         f.write(f"{self.__parcheggiauto},{self.__parcheggiautobus}\n")
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     print("--------------------------------------------------")
 
     # Occupo un posto per auto e ci sto un ora
-    p.occupaPosto("auto", "AD123CD", datetime.now(), 1)
+    p.occupaPosto("auto", "AH123CD", datetime.now(), 1)
     print(p)
 
     print("--------------------------------------------------")
