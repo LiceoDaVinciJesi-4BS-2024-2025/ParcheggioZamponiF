@@ -104,6 +104,7 @@ class Parcheggio:
 
         # Carica i posti liberi
         posti = linee[0].strip().split(",")
+        
         self.__parcheggiauto = int(posti[0])
         self.__parcheggiautobus = int(posti[1])
 
@@ -122,7 +123,7 @@ if __name__ == "__main__":
     print("--------------------------------------------------")
 
     # Occupo un posto per auto e ci sto un ora
-    p.occupaPosto("auto", "AZ123CD", datetime.now(), 1)
+    p.occupaPosto("auto", "BC123CD", datetime.now(), 1)
     print(p)
 
     print("--------------------------------------------------")
